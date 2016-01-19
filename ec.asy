@@ -19,16 +19,25 @@ size(300,300,keepAspect=true);
 
 import contour;
 
+// Declare pens and set their defaults
+/* Don't change things here to set what you want to draw.
+   Look for configuration section further below. */
+
 pen curvePen = blue;
 pen curveLabelPen = invisible;
 pen axisPen = invisible;
 
-// asymptote doesn't offer a switch statument
+// These really should be an array instead of manually creating
+// each.
 
+// Pens for points
 pen Ppen, Qpen, Rpen, iiPpen, iiiPpen, ivPpen;
+// Pens for addition
 pen PpPpen, PpiiPpen, PpiiiPpen, iiPpiiPpen, PpQpen;
+// Pens for specific cases
 pen PQline, PTangent;
 
+// Default for pens is "invisible"
 Ppen = Qpen = Rpen = iiPpen = iiiPpen = ivPpen = invisible;
 PpPpen = PpiiPpen = PpiiiPpen = iiPpiiPpen = PpQpen = invisible;
 PQline = PTangent = invisible;
@@ -36,9 +45,11 @@ PQline = PTangent = invisible;
 bool drawP, drawQ, drawR, drawiiP, drawiiiP, drawivP;
 bool drawPpP, drawPpQ, drawPpiiP, drawiiPpiiP, drawPpiiiP;
 
+// Default is to not draw any points
 bool drawAxes = false;
 drawP = drawQ = drawR = drawiiP = drawiiiP = drawivP = false;
 
+// Default is to not draw any additions
 drawPpP = drawPpQ = drawPpiiP = drawiiPpiiP = drawPpiiiP = false;
 
 void setuppens() {
@@ -88,9 +99,10 @@ if (drawivP) { ivPpen = black; }
 
 
 
+/**** Start Configuration here ****/
+// This is where things get hand configured.
 
-/// This is where things get hand configured./ y^{2}=x^{3}+ax+b
-
+// y^{2}=x^{3}+ax+b
 // curve parameters
 int a = -2;
 int b = 2;
@@ -109,7 +121,7 @@ pair P, Q; // can't be calculated until other stuff is defined
 // drawP = drawQ = drawAxes = true;
 drawP = true; PTangent = black;
 
-
+/**** End Configuration here ****/
 
 
 setuppens();
