@@ -22,7 +22,7 @@ pair P, Q; // can't be calculated until other stuff is defined
 
 // drawPpP = true;
 // drawP = drawQ = true; PQline = black;
-// drawPpQ = true;
+drawPpQ = true;
 // drawPpiiiP = true;
 // drawiiPpiiP = true;
 // drawP = drawQ = drawAxes = true;
