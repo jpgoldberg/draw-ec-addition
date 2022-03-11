@@ -20,12 +20,12 @@ pair P, Q; // can't be calculated until other stuff is defined
 
 // Uncomment one of the below to select what to draw
 
-// drawPpP = true;
+drawPpP = true;
 // drawP = drawQ = true; PQline = black;
-drawPpiiiP = true;
+// drawPpiiiP = true;
 // drawiiPpiiP = true;
 // drawP = drawQ = drawAxes = true;
-drawP = true; PTangent = black;
+// drawP = true; PTangent = black;
 
 
 include "draw-ec";
