@@ -1,55 +1,58 @@
-/****
-Copyright 2016 Jeffrey Goldberg <jeff@agilebits.com>
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-****/
+// When I (JPG) first wrote this in 2015, I did not comment
+// the code. I am adding comments now (2022) as I figure out
+// what I did.
 
 import graph;
 size(300,300,keepAspect=true);
 
 import contour;
 
-// Declare pens and set their defaults
-/* Don't change things here to set what you want to draw.
-   Look for configuration section further below. */
-
 pen curvePen = blue;
 pen curveLabelPen = invisible;
 pen axisPen = invisible;
 
-// These really should be an array instead of manually creating
-// each.
+// JPG 2022-03
+// It appears that back when I wrote this 7 years ago
+// I couldn't figure out how to get asy to draw a sequence
+// of related images. So I set it up to draw everything, but
+// for any one image that I wanted, most pens were set to
+// invisible. Selecting which image to draw is selecting which
+// pens to make visible.
+//
+// There must be a better way, but I didn't succeed in finding
+// one back then, so I won't bother looking now.
 
-// Pens for points
+// asymptote doesn't offer a switch statement
+
+// Naming scheme
+//  points: P, Q, R 
+//  Also points: iiP = 2P; iiiP = 3P; viP = 4P
+//  point addition: PpQ is "P + Q"
+
+// The pens for drawing points
 pen Ppen, Qpen, Rpen, iiPpen, iiiPpen, ivPpen;
-// Pens for addition
+
+// The pens for drawing addition
 pen PpPpen, PpiiPpen, PpiiiPpen, iiPpiiPpen, PpQpen;
-// Pens for specific cases
 pen PQline, PTangent;
 
-// Default for pens is "invisible"
+// Default to points invisible
 Ppen = Qpen = Rpen = iiPpen = iiiPpen = ivPpen = invisible;
+
+// Default to all lines invisible
 PpPpen = PpiiPpen = PpiiiPpen = iiPpiiPpen = PpQpen = invisible;
 PQline = PTangent = invisible;
 
+// Booleans for what to draw
 bool drawP, drawQ, drawR, drawiiP, drawiiiP, drawivP;
 bool drawPpP, drawPpQ, drawPpiiP, drawiiPpiiP, drawPpiiiP;
 
-// Default is to not draw any points
 bool drawAxes = false;
+
+// Drawing of any point is off by default
 drawP = drawQ = drawR = drawiiP = drawiiiP = drawivP = false;
 
-// Default is to not draw any additions
+// Drawing any point additions is off
 drawPpP = drawPpQ = drawPpiiP = drawiiPpiiP = drawPpiiiP = false;
 
 void setuppens() {
@@ -57,6 +60,8 @@ if(drawAxes) {
   axisPen = gray + dashed + linewidth(0.25);
   curveLabelPen = curvePen;
 }
+
+// Each of the draw booleans can swich on certain sets of pens
 if (drawPpQ) {
   drawP = drawQ = true;
   drawR = true;
@@ -97,12 +102,9 @@ if (drawiiiP) { iiiPpen = black; }
 if (drawivP) { ivPpen = black; }
 }
 
-
-
-/**** Start Configuration here ****/
-// This is where things get hand configured.
-
+/// This is where things get hand configured.
 // y^{2}=x^{3}+ax+b
+
 // curve parameters
 int a = -2;
 int b = 2;
@@ -113,28 +115,39 @@ real Qx = 1.2; bool QyPositive = false;
 
 pair P, Q; // can't be calculated until other stuff is defined
 
-// What to draw.
+// Uncomment one of the below to select what to draw
+
 // drawPpP = true;
 // drawP = drawQ = true; PQline = black;
 // drawPpiiiP = true;
-// drawiiPpiiP = true;
+drawiiPpiiP = true;
 // drawP = drawQ = drawAxes = true;
-drawP = true; PTangent = black;
-
-/**** End Configuration here ****/
+// drawP = true; PTangent = black;
 
 
 setuppens();
 
+// ec is the curve, and ecdx is the derivative of ec
 real ec(real x, real y) { return y^2 -  (x^3 + a*x + b); }
 real ecdx(pair p) { return (3*(p.x^2) + a)/(2*p.y); }
 
+// I can't remember what about asy's type system motivated
+// me to do things as follows.
+
 typedef real realop(real); // for functions that return single valued real functions
+
+// It appears that I could overload lineFrom based on
+// type signature
+
+// lineFrom returns a function that intersects p and has
+// slope m
 realop lineFrom(pair p, real m) {
   // y - y1 = m(x - x1)
   real innerFunc(real x) { return m*(x - p.x) + p.y; }
   return innerFunc;
 }
+
+// lineFrom returns a function of the line through A and B
 realop lineFrom(pair A, pair B) {
   if (A.x != B.x ){
     real m = (A.y - B.y)/(A.x - B.x);
@@ -144,6 +157,8 @@ realop lineFrom(pair A, pair B) {
     return innerFunc;
   }
 }
+
+// tangent returns a function for the line tangent to point p
 realop tangent(pair p) {
   return lineFrom(p, ecdx(p));
 }
@@ -151,7 +166,7 @@ realop tangent(pair p) {
 pair F(real x) { return(x, sqrt(x^3 + a*x + b)); }
 pair negF(real x) { pair p = F(x); return(p.x, -p.y);}
 
-// New we can actually set up the actual P and Q
+// Now we can actually set up the actual P and Q
 if (PyPositive) { P = F(Px); } else { P = negF(Px); }
 if (QyPositive) { Q = F(Qx); } else { Q = negF(Qx); }
 
@@ -176,7 +191,7 @@ pair addPoints(pair p, pair q) {
   } else if (p == q && p.y != 0) {
     m = ecdx(p);
   } else {
-    // There are when p == -q or when y == 0
+    // When p == -q or when y == 0
     return (inf, inf);
   }
 
@@ -199,7 +214,9 @@ string makeECLabel(int a, int b) {
 string curveLable = makeECLabel(a,b);
 label(curveLable, F(-1.25), 2.5NNW, curveLabelPen);
 
-
+// Draw the points.
+// Note that for any particular configuration most point
+// drawing pens draw invisibly
 dot(P, Ppen); label("$P$", P, SSE, Ppen);
 dot(Q, Qpen); label("Q", Q, NNE, Qpen);
 
@@ -215,6 +232,8 @@ dot(threeP, iiiPpen); label("$3P$", threeP, 2S, iiiPpen);
 pair fourP = addPoints(twoP, twoP);
 dot(fourP, ivPpen); label("$4P$", fourP, NE, ivPpen);
 
+// Draw the lines. Only the lines we want for a specific
+// configuration will have pens that aren't invisible
 draw(graph(lineFrom(P,Q), -1.6, 2.4), PQline);
 dot(conj(R), PQline); draw((R -- conj(R)), PpQpen + dashed);
 
