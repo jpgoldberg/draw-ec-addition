@@ -1,4 +1,4 @@
 ASY_CMD = asy
 
-%.pdf: %.asy
-	$(ASY_CMD) -f pdf $^
+%.pdf: %.asy pre-ec.asy draw-ec.asy
+	$(ASY_CMD) -f pdf $<
