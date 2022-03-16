@@ -1,5 +1,6 @@
 // include this file after setup and configuration
 
+pair P, Q, negP; // can't be calculated until other stuff is defined
 setuppens();
 
 // ec is the curve, and ecdx is the derivative of ec
@@ -42,7 +43,8 @@ pair F(real x) { return(x, sqrt(x^3 + a*x + b)); }
 pair negF(real x) { pair p = F(x); return(p.x, -p.y);}
 
 // Now we can actually set up the actual P and Q
-if (PyPositive) { P = F(Px); } else { P = negF(Px); }
+if (PyPositive) { P = F(Px); negP = negF(Px); }
+else { P = negF(Px); negP = F(Px); }
 if (QyPositive) { Q = F(Qx); } else { Q = negF(Qx); }
 
 guide[][] thegraphs = contour(ec,
@@ -123,3 +125,6 @@ dot(conj(fourP), PpiiiPpen); draw((fourP -- conj(fourP)), PpiiiPpen+dashed);
 
 draw(graph(tangent(twoP), fourP.x - 0.5 , twoP.x + 0.4), iiPpiiPpen);
 dot(conj(fourP), iiPpiiPpen); draw((fourP -- conj(fourP)), iiPpiiPpen+dashed);
+
+draw(P -- negP, negPpPpen);
+dot(negP, negPpen); label("$-P$", negP, N, negPpen);

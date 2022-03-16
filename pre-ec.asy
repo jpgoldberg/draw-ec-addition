@@ -32,30 +32,30 @@ pen axisPen = invisible;
 //  point addition: PpQ is "P + Q"
 
 // The pens for drawing points
-pen Ppen, Qpen, Rpen, iiPpen, iiiPpen, ivPpen;
+pen Ppen, Qpen, Rpen, iiPpen, iiiPpen, ivPpen, negPpen;
 
 // The pens for drawing addition
-pen PpPpen, PpiiPpen, PpiiiPpen, iiPpiiPpen, PpQpen;
+pen PpPpen, PpiiPpen, PpiiiPpen, iiPpiiPpen, PpQpen, negPpPpen;
 pen PQline, PTangent;
 
 // Default to points invisible
-Ppen = Qpen = Rpen = iiPpen = iiiPpen = ivPpen = invisible;
+Ppen = Qpen = Rpen = iiPpen = iiiPpen = ivPpen = negPpen = invisible;
 
 // Default to all lines invisible
-PpPpen = PpiiPpen = PpiiiPpen = iiPpiiPpen = PpQpen = invisible;
+PpPpen = PpiiPpen = PpiiiPpen = iiPpiiPpen = PpQpen = negPpPpen = invisible;
 PQline = PTangent = invisible;
 
 // Booleans for what to draw
-bool drawP, drawQ, drawR, drawiiP, drawiiiP, drawivP;
-bool drawPpP, drawPpQ, drawPpiiP, drawiiPpiiP, drawPpiiiP;
+bool drawP, drawQ, drawR, drawiiP, drawiiiP, drawivP, drawnegP;
+bool drawPpP, drawPpQ, drawPpiiP, drawiiPpiiP, drawPpiiiP, drawnegPpP;
 
 bool drawAxes = false;
 
 // Drawing of any point is off by default
-drawP = drawQ = drawR = drawiiP = drawiiiP = drawivP = false;
+drawP = drawQ = drawR = drawiiP = drawiiiP = drawivP = drawnegP = false;
 
 // Drawing any point additions is off
-drawPpP = drawPpQ = drawPpiiP = drawiiPpiiP = drawPpiiiP = false;
+drawPpP = drawPpQ = drawPpiiP = drawiiPpiiP = drawPpiiiP = drawnegPpP = false;
 
 void setuppens() {
 if(drawAxes) {
@@ -69,6 +69,11 @@ if (drawPpQ) {
   drawR = true;
   PQline = black;
   PpQpen = black;
+}
+
+if (drawnegPpP) {
+  drawP = drawnegP = true;
+  negPpPpen = black;
 }
 
 if (drawPpP) {
@@ -102,6 +107,7 @@ if (drawR) { Rpen = black; }
 if (drawiiP) { iiPpen = black; }
 if (drawiiiP) { iiiPpen = black; }
 if (drawivP) { ivPpen = black; }
+if (drawnegP) { negPpen = black; }
 }
 
 // end of included setup file
