@@ -16,8 +16,6 @@ int b = 2;
 real Px =-0.90; bool PyPositive = false;
 real Qx = 1.2; bool QyPositive = false;
 
-pair P, Q; // can't be calculated until other stuff is defined
-
 // Uncomment one of the below to select what to draw
 
 drawPpP = true;

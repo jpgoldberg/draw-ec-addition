@@ -16,8 +16,6 @@ int b = 2;
 real Px =-0.90; bool PyPositive = false;
 real Qx = 1.2; bool QyPositive = false;
 
-pair P, Q, negP; // can't be calculated until other stuff is defined
-
 // Uncomment one of the below to select what to draw
 
 // drawPpP = true;
@@ -27,7 +25,7 @@ pair P, Q, negP; // can't be calculated until other stuff is defined
 // drawiiPpiiP = true;
 // drawP = drawQ = drawAxes = true;
 //drawP = true; PTangent = black;
-drawnegP = true
+drawnegPpP = true;
 
 
 include "draw-ec";
