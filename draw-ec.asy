@@ -126,5 +126,5 @@ dot(conj(fourP), PpiiiPpen); draw((fourP -- conj(fourP)), PpiiiPpen+dashed);
 draw(graph(tangent(twoP), fourP.x - 0.5 , twoP.x + 0.4), iiPpiiPpen);
 dot(conj(fourP), iiPpiiPpen); draw((fourP -- conj(fourP)), iiPpiiPpen+dashed);
 
-draw(P -- negP, negPpPpen);
+draw(P -- negP, negPpPpen, L="$P + -P = \mathbf{0}$");
 dot(negP, negPpen); label("$-P$", negP, N, negPpen);
