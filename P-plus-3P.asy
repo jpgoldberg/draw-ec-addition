@@ -23,7 +23,7 @@ real Qx = 1.2; bool QyPositive = false;
 drawPpiiiP = true;
 // drawiiPpiiP = true;
 // drawP = drawQ = drawAxes = true;
-drawP = true; PTangent = black;
+// drawP = true; PTangent = black;
 
 
 include "draw-ec";
