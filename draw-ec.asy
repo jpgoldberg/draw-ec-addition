@@ -90,8 +90,8 @@ string makeECLabel(int a, int b) {
   result += "$"; return result;
 }
 
-string curveLable = makeECLabel(a,b);
-label(curveLable, F(-1.25), 2.5NNW, curveLabelPen);
+string curveLabel = makeECLabel(a,b);
+label(curveLabel, F(-1.25), 2.5NNW, curveLabelPen);
 
 // Draw the points.
 // Note that for any particular configuration most point

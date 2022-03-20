@@ -1,8 +1,3 @@
-// This is the template file that 
-// 1. includes pre-ec.asy (the setup code)
-// 2. Specifies what should be drawn
-// 3. includes draw-ec.asy to do the drawing
-
 include "pre-ec";
 
 /// This is where things get hand configured.
