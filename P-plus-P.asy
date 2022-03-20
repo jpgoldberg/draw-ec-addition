@@ -18,8 +18,8 @@ real Qx = 1.2; bool QyPositive = false;
 
 include "post-config";
 
-dot(P, Ppen); label("$P$", P, SSE, Ppen);
-dot(twoP, iiPpen); label("$2P$", twoP, W, iiPpen);
+dot(P); label("$P$", P, SSE);
+dot(twoP); label("$2P$", twoP, W);
 
 draw(graph(tangent(P), -2.5, 2.5));
 dot(conj(twoP)); draw((twoP -- conj(twoP)), dashed);
