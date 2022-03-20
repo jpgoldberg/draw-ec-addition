@@ -16,17 +16,11 @@ int b = 2;
 real Px =-0.90; bool PyPositive = false;
 real Qx = 1.2; bool QyPositive = false;
 
-// Uncomment one of the below to select what to draw
 
-// drawPpP = true;
-// drawP = drawQ = true; PQline = black;
-// drawPpQ = true;
-// drawPpiiiP = true;
-// drawiiPpiiP = true;
-// drawP = drawQ = drawAxes = true;
-//drawP = true; PTangent = black;
-drawnegPpP = true;
+include "post-config";
 
+dot(negP); label("$-P$", negP, N);
+dot(P); label("$P$", P, SSE);
 
-include "draw-ec";
+draw(P -- negP, L="$-P + P = \mathbf{0}$");
 

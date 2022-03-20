@@ -16,16 +16,12 @@ int b = 2;
 real Px =-0.90; bool PyPositive = false;
 real Qx = 1.2; bool QyPositive = false;
 
-// Uncomment one of the below to select what to draw
+include "post-config";
 
-// drawPpP = true;
-// drawP = drawQ = true; PQline = black;
-// drawPpiiiP = true;
-drawPpiiP = true;
-// drawiiPpiiP = true;
-// drawP = drawQ = drawAxes = true;
-// drawP = true; PTangent = black;
+dot(P); label("$P$", P, SSE);
+dot(twoP); label("$2P$", twoP, W);
+dot(threeP); label("$3P$", threeP, 2S);
 
 
-include "draw-ec";
-
+draw(graph(lineFrom(P,twoP), -1.6, 2.4));
+dot(conj(threeP)); draw((threeP -- conj(threeP)), dashed);
