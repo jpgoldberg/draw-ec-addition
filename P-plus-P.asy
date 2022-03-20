@@ -16,15 +16,13 @@ int b = 2;
 real Px =-0.90; bool PyPositive = false;
 real Qx = 1.2; bool QyPositive = false;
 
-// Uncomment one of the below to select what to draw
+include "post-config";
 
-drawPpP = true;
-// drawP = drawQ = true; PQline = black;
-// drawPpiiiP = true;
-// drawiiPpiiP = true;
-// drawP = drawQ = drawAxes = true;
-// drawP = true; PTangent = black;
+dot(P, Ppen); label("$P$", P, SSE, Ppen);
+dot(twoP, iiPpen); label("$2P$", twoP, W, iiPpen);
+
+draw(graph(tangent(P), -2.5, 2.5));
+dot(conj(twoP)); draw((twoP -- conj(twoP)), dashed);
 
 
-include "draw-ec";
 

@@ -18,15 +18,12 @@ real Qx = 1.2; bool QyPositive = false;
 
 pair P, Q; // can't be calculated until other stuff is defined
 
-// Uncomment one of the below to select what to draw
+include "post-config";
 
-// drawPpP = true;
-// drawP = drawQ = true; PQline = black;
-// drawPpiiiP = true;
-drawiiPpiiP = true;
-// drawP = drawQ = drawAxes = true;
-// drawP = true; PTangent = black;
+dot(twoP); label("$2P$", twoP, W);
+dot(fourP); label("$4P$", fourP, NE);
 
+draw(graph(tangent(twoP), fourP.x - 0.5 , twoP.x + 0.4));
+dot(conj(fourP), iiPpiiPpen); draw((fourP -- conj(fourP)), dashed);
 
-include "draw-ec";
 

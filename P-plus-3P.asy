@@ -26,5 +26,12 @@ drawPpiiiP = true;
 // drawP = true; PTangent = black;
 
 
-include "draw-ec";
+include "post-config";
+
+dot(P); label("$P$", P, SSE);
+dot(threeP); label("$3P$", threeP, 2S);
+dot(fourP); label("$4P$", fourP, NE);
+
+draw(graph(lineFrom(P, threeP), -2, 2.5));
+dot(conj(fourP)); draw((fourP -- conj(fourP)), dashed);
 
