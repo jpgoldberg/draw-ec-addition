@@ -92,6 +92,7 @@ if (PyPositive) { P = F(Px); }
 else { P = negF(Px); }
 if (QyPositive) { Q = F(Qx); } else { Q = negF(Qx); }
 negP = negPair(P);
+pair R = addPoints(P, Q);
 pair twoP = addPoints(P,P);
 pair threeP = addPoints(P, twoP);
 pair fourP = addPoints(twoP, twoP);

@@ -27,5 +27,11 @@ drawPpQ = true;
 //drawP = true; PTangent = black;
 
 
-include "draw-ec";
+include "post-config";
 
+dot(P); label("$P$", P, SSE);
+dot(Q); label("Q", Q, NNE);
+dot(R); label("$P+Q$", R,NE);
+
+draw(graph(lineFrom(P,Q), -1.6, 2.4));
+dot(conj(R)); draw((R -- conj(R)), dashed);
