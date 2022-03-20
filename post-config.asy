@@ -1,7 +1,6 @@
 // include this file after setup and configuration
 
 pair P, Q, negP; // can't be calculated until other stuff is defined
-setuppens();
 
 // ec is the curve, and ecdx is the derivative of ec
 real ec(real x, real y) { return y^2 -  (x^3 + a*x + b); }
@@ -47,9 +46,6 @@ guide[][] thegraphs = contour(ec,
       a=(-3,-3), b=(3,3), new real[] {0});
 draw(thegraphs[0], curvePen);
 
-xaxis(xmin=-3, xmax=3, L="$x$", axisPen);
-yaxis(ymin=-3, ymax=3, L="$y$", axisPen);
-
 pair addPoints(pair p, pair q) {
   // First deal with O
   // 0 + 0 = 0; p + 0 = p; q + 0 = q;
@@ -85,7 +81,7 @@ string makeECLabel(int a, int b) {
 }
 
 string curveLabel = makeECLabel(a,b);
-label(curveLabel, F(-1.25), 2.5NNW, curveLabelPen);
+label(curveLabel, F(-1.25), 2.5NNW, curvePen);
 
 // Now we can compute and set up all of the points
 if (PyPositive) { P = F(Px); }

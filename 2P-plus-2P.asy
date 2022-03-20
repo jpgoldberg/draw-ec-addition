@@ -19,6 +19,6 @@ dot(twoP); label("$2P$", twoP, W);
 dot(fourP); label("$4P$", fourP, NE);
 
 draw(graph(tangent(twoP), fourP.x - 0.5 , twoP.x + 0.4));
-dot(conj(fourP), iiPpiiPpen); draw((fourP -- conj(fourP)), dashed);
+dot(conj(fourP)); draw((fourP -- conj(fourP)), dashed);
 
 

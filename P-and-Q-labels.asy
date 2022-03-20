@@ -16,7 +16,7 @@ include "post-config";
 dot(P); label("$P$", P, SSE);
 dot(Q); label("Q", Q, NNE);
 
-xaxis(xmin=-3, xmax=3, L="$x$");
-yaxis(ymin=-3, ymax=3, L="$y$");
+xaxis(xmin=-3, xmax=3, L="$x$", axisPen);
+yaxis(ymin=-3, ymax=3, L="$y$", axisPen);
 label(curveLabel, F(-1.25), 2.5NNW, curvePen);
 
