@@ -41,11 +41,13 @@ realop tangent(pair p) {
 
 pair F(real x) { return(x, sqrt(x^3 + a*x + b)); }
 pair negF(real x) { pair p = F(x); return(p.x, -p.y);}
+pair negPair(pair p) { return(p.x, -p.y); }
 
 // Now we can actually set up the actual P and Q
-if (PyPositive) { P = F(Px); negP = negF(Px); }
-else { P = negF(Px); negP = F(Px); }
+if (PyPositive) { P = F(Px); }
+else { P = negF(Px); }
 if (QyPositive) { Q = F(Qx); } else { Q = negF(Qx); }
+negP = negPair(P);
 
 guide[][] thegraphs = contour(ec,
       a=(-3,-3), b=(3,3), new real[] {0});
@@ -126,5 +128,5 @@ dot(conj(fourP), PpiiiPpen); draw((fourP -- conj(fourP)), PpiiiPpen+dashed);
 draw(graph(tangent(twoP), fourP.x - 0.5 , twoP.x + 0.4), iiPpiiPpen);
 dot(conj(fourP), iiPpiiPpen); draw((fourP -- conj(fourP)), iiPpiiPpen+dashed);
 
-draw(P -- negP, negPpPpen, L="$P + -P = \mathbf{0}$");
+draw(P -- negP, negPpPpen, L="$-P + P = \mathbf{0}$");
 dot(negP, negPpen); label("$-P$", negP, N, negPpen);
