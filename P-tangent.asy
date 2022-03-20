@@ -13,6 +13,8 @@ real Qx = 1.2; bool QyPositive = false;
 
 include "post-config";
 
+pair twoP = addPoints(P,P);
+
 dot(P); label("$P$", P, SSE);
 draw(graph(tangent(P), -2.5, 2.5));
 dot(conj(twoP));

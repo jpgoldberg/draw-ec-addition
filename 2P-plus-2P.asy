@@ -15,6 +15,9 @@ pair P, Q; // can't be calculated until other stuff is defined
 
 include "post-config";
 
+pair twoP = addPoints(P,P);
+pair fourP = addPoints(twoP, twoP);
+
 dot(twoP); label("$2P$", twoP, W);
 dot(fourP); label("$4P$", fourP, NE);
 

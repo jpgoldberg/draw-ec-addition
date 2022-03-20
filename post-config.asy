@@ -81,14 +81,8 @@ string makeECLabel(int a, int b) {
 }
 
 string curveLabel = makeECLabel(a,b);
-label(curveLabel, F(-1.25), 2.5NNW, curvePen);
 
 // Now we can compute and set up all of the points
 if (PyPositive) { P = F(Px); }
 else { P = negF(Px); }
 if (QyPositive) { Q = F(Qx); } else { Q = negF(Qx); }
-negP = negPair(P);
-pair R = addPoints(P, Q);
-pair twoP = addPoints(P,P);
-pair threeP = addPoints(P, twoP);
-pair fourP = addPoints(twoP, twoP);

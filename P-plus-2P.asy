@@ -13,6 +13,9 @@ real Qx = 1.2; bool QyPositive = false;
 
 include "post-config";
 
+pair twoP = addPoints(P,P);
+pair threeP = addPoints(P, twoP);
+
 dot(P); label("$P$", P, SSE);
 dot(twoP); label("$2P$", twoP, W);
 dot(threeP); label("$3P$", threeP, 2S);
