@@ -19,4 +19,4 @@ dot(P); label("$P$", P, SSE);
 dot(twoP); label("$2P$", twoP, W);
 
 draw(graph(tangent(P), -2.5, 2.5));
-dot(conj(twoP)); draw((twoP -- conj(twoP)), dashed);
+dot(inv(twoP)); draw((twoP -- inv(twoP)), dashed);

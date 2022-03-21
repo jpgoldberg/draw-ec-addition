@@ -7,3 +7,6 @@ import contour;
 
 pen curvePen = blue;
 pen axisPen = gray + dashed + linewidth(0.25);
+
+// additive inverse on ec over the reals
+pair inv(pair p) { return(p.x, -p.y); }

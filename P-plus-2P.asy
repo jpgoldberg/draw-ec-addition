@@ -22,4 +22,4 @@ dot(threeP); label("$3P$", threeP, 2S);
 
 
 draw(graph(lineFrom(P,twoP), -1.6, 2.4));
-dot(conj(threeP)); draw((threeP -- conj(threeP)), dashed);
+dot(inv(threeP)); draw((threeP -- inv(threeP)), dashed);

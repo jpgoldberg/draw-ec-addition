@@ -14,7 +14,7 @@ real Qx = 1.2; bool QyPositive = false;
 
 include "post-config";
 
-pair negP = conj(P);
+pair negP = inv(P);
 
 dot(negP); label("$-P$", negP, N);
 dot(P); label("$P$", P, SSE);

@@ -22,5 +22,5 @@ dot(threeP); label("$3P$", threeP, 2S);
 dot(fourP); label("$4P$", fourP, NE);
 
 draw(graph(lineFrom(P, threeP), -2, 2.5));
-dot(conj(fourP)); draw((fourP -- conj(fourP)), dashed);
+dot(inv(fourP)); draw((fourP -- inv(fourP)), dashed);
 
