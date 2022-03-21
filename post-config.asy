@@ -1,6 +1,6 @@
 // include this file after setup and configuration
 
-pair P, Q, negP; // can't be calculated until other stuff is defined
+pair P, Q; // can't be calculated until other stuff is defined
 
 // ec is the curve, and ecdx is the derivative of ec
 real ec(real x, real y) { return y^2 -  (x^3 + a*x + b); }
@@ -40,7 +40,6 @@ realop tangent(pair p) {
 
 pair F(real x) { return(x, sqrt(x^3 + a*x + b)); }
 pair negF(real x) { pair p = F(x); return(p.x, -p.y);}
-pair negPair(pair p) { return(p.x, -p.y); }
 
 guide[][] thegraphs = contour(ec,
       a=(-3,-3), b=(3,3), new real[] {0});
@@ -49,9 +48,8 @@ draw(thegraphs[0], curvePen);
 pair addPoints(pair p, pair q) {
   // First deal with O
   // 0 + 0 = 0; p + 0 = p; q + 0 = q;
-  if (p.y == inf && q.y == inf) {return (inf,inf);}
-  else if (p.y == inf && q.y != inf) {return q; }
-  else if (q.y == inf && p.y != inf) {return p; }
+  if (p.y == inf) {return q; }
+  else if (q.y == inf) {return p; }
 
   // Now calculate slope
   real m;
@@ -69,20 +67,13 @@ pair addPoints(pair p, pair q) {
   real resultY = m*(p.x - resultX) - p.y;
   return (resultX, resultY);
 }
-string makeECLabel(int a, int b) {
-  string result = "$y^2 = x^3 ";
-  if( a < 0) { result += "- " + string(-a);}
-  else {result += "+ " + string(a);}
-  result += "x";
-
-  if (b < 0) { result += "- " + string(-b); }
-  else { result += "+ " + string(b); }
-  result += "$"; return result;
-}
-
-string curveLabel = makeECLabel(a,b);
 
 // Now we can compute and set up all of the points
-if (PyPositive) { P = F(Px); }
-else { P = negF(Px); }
-if (QyPositive) { Q = F(Qx); } else { Q = negF(Qx); }
+if (PyPositive)
+  { P = F(Px); }
+else
+  { P = negF(Px); }
+if (QyPositive)
+  { Q = F(Qx); }
+else 
+  { Q = negF(Qx); }

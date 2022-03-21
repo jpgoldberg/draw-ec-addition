@@ -17,4 +17,4 @@ include "post-config";
 
 xaxis(xmin=-3, xmax=3, L="$x$", axisPen);
 yaxis(ymin=-3, ymax=3, L="$y$", axisPen);
-label(curveLabel, F(-1.25), 2.5NNW, curvePen);
+label(makeECLabel(a, b), F(-1.25), 2.5NNW, curvePen);
